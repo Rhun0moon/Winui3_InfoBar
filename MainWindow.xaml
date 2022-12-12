@@ -1,0 +1,59 @@
+﻿<Window
+    x:Class="Winui_InfoBar.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Winui_InfoBar"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid  Height="400" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <!-- 틀잡기(크기정해주기) -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0"  Background="LightBlue" Padding="10">
+            <InfoBar x:Name="TestInfoBar1" IsOpen="True" IsIconVisible="True" IsClosable="True" Severity="Informational" Title="안동대학교 공지사항" 
+                 Message="대학본관이 2022. 12. 14.(수) ~ 12. 15.(목)까지 이사할 예정이오니, 이전 후 본부 부서 방문 시 [붙임]을 참고하여 주시기 바랍니다.">
+                <InfoBar.ActionButton>
+                    <HyperlinkButton x:Name="InfoBarButton" Visibility="Collapsed" Content="공지사항으로 이동하기" NavigateUri="https://www.andong.ac.kr/main/index.do" />
+                </InfoBar.ActionButton>
+            </InfoBar>
+        </Grid>
+        <Grid Grid.Column="1" Background="LightPink">
+            <StackPanel Padding="10">
+                <!-- Is Open -->
+                <ToggleSwitch  x:Name="toggleOpen" OffContent="Open" OnContent="Close" Margin="0,12,0,0" Toggled="toggleOpen_Toggled"/>
+
+                <!-- Is Icon Visible -->
+                <ToggleSwitch x:Name="toggleIcon" OffContent="Icon Visibile" OnContent="Icon Collapsed" Margin="0,12,0,0" Toggled="toggleIcon_Toggled"/>
+
+                <!-- Is Closable -->
+                <ToggleSwitch x:Name="toggleClosable" OffContent="Closable" OnContent="Unclosable" Margin="0,12,0,0" Toggled="toggleClosable_Toggled"/>
+
+                <!-- Severrity  SelectionChanged="" -->
+                <ComboBox x:Name="SeverityComboBox" Header="Severity" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="SeverityComboBox_SelectionChanged">
+                    <ComboBoxItem x:Name="Informational">Informational</ComboBoxItem>
+                    <ComboBoxItem x:Name="Success">Success</ComboBoxItem>
+                    <ComboBoxItem x:Name="Warning">Warning</ComboBoxItem>
+                    <ComboBoxItem x:Name="Error">Error</ComboBoxItem>
+                </ComboBox>
+
+                <!-- Message Length -->
+                <ComboBox x:Name="MessageComboBox" Header="Message Length" HorizontalAlignment="Stretch" SelectedIndex="1" SelectionChanged="MessageComboBox_SelectionChanged">
+                    <ComboBoxItem x:Name="Short" Content="Short" />
+                    <ComboBoxItem x:Name="Long" Content="Long" />
+                </ComboBox>
+
+                <!-- Action Button -->
+                <ComboBox x:Name="ActionButtonComboBox" Header="Action Button" HorizontalAlignment="Stretch" SelectedIndex="0" SelectionChanged="ActionButtonComboBox_SelectionChanged">
+                    <ComboBoxItem x:Name="None" Content="None" />
+                    <ComboBoxItem x:Name="Button" Content="Button" />
+                </ComboBox>
+            </StackPanel>
+            
+        </Grid>
+    </Grid>
+</Window>
